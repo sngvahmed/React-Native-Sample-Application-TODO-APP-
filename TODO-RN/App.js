@@ -1,53 +1,34 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View, TextInput, Button, ScrollView} from 'react-native';
 import { AppRegistry, Image } from 'react-native';
-import {Component} from 'React';
-
-class Greeting extends Component {
-	constructor(props) {
-		super(props)
-        console.log(props)
-        this.state = {counter:0};
-    
-		setInterval(() => {
-			this.setState(previousState => {
-				return {counter: previousState.counter + 1};
-			});
-		}, 1000);
-	}
-	render() {
-        let counter = this.state.counter;
-        let style = this.props.style;
-		return (
-            <View>
-                <Text style={style}> Hello {this.props.name} {counter}! </Text> 
-            </View>
-		);
-	}
-}
+import { Component } from 'React';
+import { ToDoCard } from './src/todo';
+import { Greeting } from './src/greeting';
 
 export default class App extends Component {
   render() {
     let pic = {
-      	uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+      	uri: 'https://www.askideas.com/media/13/Welcome-3d-Text-Picture.jpg'
     };
     return (
 		<View style={styles.container}>
-			<Image source={pic} style={{width: 193, height: 110}}/>
+			<Image source={pic} style={{alignSelf: 'stretch', height: 40, flex: 1}}/>
 			<Greeting name="Ahmed" style={[styles.Red, styles['Text-Align']]}/>
-			<Greeting name="Nasser" style={[styles.Orange, styles['Text-Align']]}/>
+			<ToDoCard ></ToDoCard>
 		</View>
     );
   }
 }
 
-
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
 		backgroundColor: '#fff',
 		alignItems: 'center',
 		justifyContent: 'center',
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
 	},
 	Red: {
 		color: 'red'
@@ -56,6 +37,9 @@ const styles = StyleSheet.create({
 		color: 'orange'
 	},
 	'Text-Align': {
-		textAlign: "center"
+		textAlign: "center",
+        borderWidth: 1,
+        borderRadius: 5,
+        padding: 5
 	}
 });
